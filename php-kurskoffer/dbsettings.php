@@ -6,10 +6,10 @@
 
   $dbcnx=@mysql_connect($dbhost, $dbusername, $dbpass);
   if (!$dbcnx) {
-    exit("<p align='center'>Currently <b>Server</b> is not available</p><br><br><br><b>Could not connect to database:</b> " . mysql_error());
+  	error_log('could not establish database connection ' . mysql_error());
   }
   if (!@mysql_select_db($dbname, $dbcnx)) {
-    exit("<p align='center'>Currently <b>Database</b> is not available</p>");
+  	error_log('could not select mysql database ' . $dbname . ' due to ' . mysql_error());  
   }
   mysql_query('SET CHARSET utf8');
 ?>
