@@ -3,7 +3,7 @@
 	
 	/* Connect to the database */
 	include_once ("dbsettings.php");
-	header('Content-type: application/json; charset=utf-8');
+	header('Content-type: application/json');
 	
 	if ( isset($_POST['username']) && isset($_POST['password']) ){
 		error_log('login process for user ' . $_POST['username']);
