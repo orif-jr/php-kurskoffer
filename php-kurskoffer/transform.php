@@ -5,13 +5,16 @@
 // 	header('Content-type: application/xml; charset=utf-8');
 // 	header('Content-type: text/html; charset=utf-8');
 	
-	if ( isset($_POST['token']) ) {		
+	if ( isset($_POST['token']) ) {	
+		error_log('token was set .. accessing moodle');	
 		
 		$xml = new DOMDocument;
 		$xml->load("http://cloud.c3lab.tk.jku.at/moodle/webservice/rest/server.php?wstoken=".$_POST['token']."&wsfunction=core_course_get_contents&courseid=2");
+		error_log('xml content loaded');
 		
 		$xsl = new DOMDocument;
 		$xsl->load("transform.xsl");
+		error_log('xsl loaded');
 		
 		// configure the transformer
 		$proc = new XSLTProcessor;
@@ -19,7 +22,7 @@
 		
 // 		echo $proc->transformToXML($xml);
 		$new_xml = $proc->transformToXML($xml);
-		
+		error_log('xml transformation successful ' . $new_xml);
 		
 		/* Push the new formed XML document into JSON format */
 		$xml2 = new SimpleXMLElement($new_xml);
@@ -39,10 +42,9 @@
 		
 		// convert to the JSON format
 		$json = json_encode($topics_list);
+		error_log($json);
 		echo $json;
-		
 	} else {
 		echo "Error: can not identify the user token.";
 	}
-	
 ?>
