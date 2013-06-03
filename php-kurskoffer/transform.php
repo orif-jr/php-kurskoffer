@@ -9,7 +9,7 @@
 		error_log('token ' . $_POST['token'] . ' was set .. accessing moodle');	
 		
 		$xml = new DOMDocument;
-		$xml->load("http://cloud.c3lab.tk.jku.at/moodle/webservice/rest/server.php?wstoken=".$_POST['token']."&wsfunction=core_course_get_contents&courseid=2");
+		$xml->load("http://cloud.c3lab.tk.jku.at/moodle/webservice/rest/server.php?wstoken=".$_POST['token']."&wsfunction=core_course_get_contents&courseid=4");
 		error_log('xml content loaded');
 		
 		$xsl = new DOMDocument;
