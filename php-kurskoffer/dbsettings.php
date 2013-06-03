@@ -1,7 +1,7 @@
 ﻿<?php
   $dbhost="127.0.0.1";
   $dbusername="root";
-  $dbpass="orif29";
+  $dbpass="root";
   $dbname="kurskoffer";
 
   $dbcnx=@mysql_connect($dbhost, $dbusername, $dbpass);
