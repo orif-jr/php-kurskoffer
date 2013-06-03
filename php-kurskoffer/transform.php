@@ -6,7 +6,7 @@
 // 	header('Content-type: text/html; charset=utf-8');
 	
 	if ( isset($_POST['token']) ) {	
-		error_log('token was set .. accessing moodle');	
+		error_log('token ' . $_POST['token'] . ' was set .. accessing moodle');	
 		
 		$xml = new DOMDocument;
 		$xml->load("http://cloud.c3lab.tk.jku.at/moodle/webservice/rest/server.php?wstoken=".$_POST['token']."&wsfunction=core_course_get_contents&courseid=2");
