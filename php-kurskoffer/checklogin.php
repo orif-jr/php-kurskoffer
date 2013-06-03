@@ -3,7 +3,7 @@
 	
 	/* Connect to the database */
 	include_once ("dbsettings.php");
-	header('Content-type: application/json');
+	header('Content-type: text/plain');
 	
 	if ( isset($_POST['username']) && isset($_POST['password']) ){
 		error_log('login process for user ' . $_POST['username']);
@@ -44,7 +44,7 @@
 			$update = "UPDATE `accounts` SET password='".$_POST['password']."', token='".$token."' WHERE login='".$_POST['username']."'";
 			$upd_result = mysql_query($update) or die ("<b>Update of User Data into Middleware System DB failed:</b> " . mysql_error());
 		}
-		echo $json1;
+		echo $token;
 	}
 	
 	/* Closing DB connection */
