@@ -8,7 +8,7 @@
 	if ( isset($_POST['token']) ) {		
 		
 		$xml = new DOMDocument;
-		$xml->load("http://localhost/moodle-2.5dev/webservice/rest/server.php?wstoken=".$_POST['token']."&wsfunction=core_course_get_contents&courseid=2");
+		$xml->load("http://cloud.c3lab.tk.jku.at/moodle/webservice/rest/server.php?wstoken=".$_POST['token']."&wsfunction=core_course_get_contents&courseid=2");
 		
 		$xsl = new DOMDocument;
 		$xsl->load("transform.xsl");
