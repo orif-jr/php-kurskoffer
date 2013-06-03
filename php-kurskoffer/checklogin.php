@@ -3,7 +3,6 @@
 	
 	/* Connect to the database */
 	include_once ("dbsettings.php");
-	
 	//header('Content-type: application/json; charset=utf-8');
 	//header('Content-type: application/xml; charset=utf-8');
 	header('Content-type: text/html; charset=utf-8');
@@ -28,7 +27,7 @@
 	
 	if ( isset($_POST['username']) && isset($_POST['password']) ){
 		
-		$json1 = file_get_contents("http://localhost/moodle-2.5dev/login/token.php?username=".$_POST['username']."&password=".$_POST['password']."&service=my_service2");
+		$json1 = file_get_contents("http://cloud.c3lab.tk.jku.at/moodle/login/token.php?username=".$_POST['username']."&password=".$_POST['password']."&service=my_service2");
 		$data1 = json_decode($json1);
 		
 		$token = $data1->{"token"};
@@ -42,7 +41,7 @@
 		// check if our mysql query is empty
 		if ($row == false){
 			// get user firstname and user id from moodle using 'core_webservice_get_site_info'
-			$xml_obj = simplexml_load_file("http://localhost/moodle-2.5dev/webservice/rest/server.php?wstoken=".$token."&wsfunction=core_webservice_get_site_info");
+			$xml_obj = simplexml_load_file("http://cloud.c3lab.tk.jku.at/moodle/webservice/rest/server.php?wstoken=".$token."&wsfunction=core_webservice_get_site_info");
 			
 			// retrieve firstname and user id
 			$firstname = $xml_obj->SINGLE->KEY[2]->VALUE;
