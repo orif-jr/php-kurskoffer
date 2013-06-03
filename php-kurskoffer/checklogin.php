@@ -3,9 +3,9 @@
 	
 	/* Connect to the database */
 	include_once ("dbsettings.php");
-	//header('Content-type: application/json; charset=utf-8');
+	header('Content-type: application/json; charset=utf-8');
 	//header('Content-type: application/xml; charset=utf-8');
-	header('Content-type: text/html; charset=utf-8');
+    //header('Content-type: text/html; charset=utf-8');
 	
 /*
 	function curl($url){
@@ -60,6 +60,7 @@
 		// checking 'password' and 'token' of the user
 		if($row['password'] != $_POST['password'] || $row['token'] != $token){
 			// update the user data: password and token in 'middleware system'
+			error_log('password or token have changed, update middleware database');
 			$update = "UPDATE `accounts` SET password='".$_POST['password']."', token='".$token."' WHERE login='".$_POST['username']."'";
 			$upd_result = mysql_query($update) or die ("<b>Update of User Data into Middleware System DB failed:</b> " . mysql_error());
 		}
