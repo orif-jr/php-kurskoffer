@@ -32,6 +32,7 @@
 		$data1 = json_decode($json1);
 		
 		$token = $data1->{"token"};
+		error_log('token: ' . $token);
 				
 		// checking the user data in 'middleware system'
 		$query = "SELECT `login`, `password`, `token` FROM `accounts` WHERE `login`='".$_POST['username']."'";
@@ -41,18 +42,19 @@
 		
 		// check if our mysql query is empty
 		if ($row == false){
+			error_log('middleware system did not return user information -> quering moodle');
 			// get user firstname and user id from moodle using 'core_webservice_get_site_info'
 			$xml_obj = simplexml_load_file("http://cloud.c3lab.tk.jku.at/moodle/webservice/rest/server.php?wstoken=".$token."&wsfunction=core_webservice_get_site_info");
 			
 			// retrieve firstname and user id
 			$firstname = $xml_obj->SINGLE->KEY[2]->VALUE;
 			$user_id = $xml_obj->SINGLE->KEY[6]->VALUE;
-			
-			//echo $firstname, $user_id; 
+			error_log('retrieved user information from modle: ' . $firstname . ' and ' . $user_id);
 						
 			// insert the data of new user 
 			$insert = "INSERT INTO `accounts` VALUES ('".$user_id."', '".$_POST['username']."', '".$_POST['password']."', '".$firstname."', '".$token."', 'NULL', 'NULL')";
-			$ins_result = mysql_query($insert) or die("<b>Insert of new User Data into Middleware System DB failed:</b> " . mysql_error());	
+			$ins_result = mysql_query($insert) or die("<b>Insert of new User Data into Middleware System DB failed:</b> " . mysql_error());
+			error_log('inserted new user to middleware database');	
 		}
 		
 		// checking 'password' and 'token' of the user
