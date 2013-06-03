@@ -26,8 +26,9 @@
 */	
 	
 	if ( isset($_POST['username']) && isset($_POST['password']) ){
-		
+		error_log('login process for user ' . $_POST['username']);
 		$json1 = file_get_contents("http://cloud.c3lab.tk.jku.at/moodle/login/token.php?username=".$_POST['username']."&password=".$_POST['password']."&service=my_service2");
+		error_log('result: ' . $json1);
 		$data1 = json_decode($json1);
 		
 		$token = $data1->{"token"};
