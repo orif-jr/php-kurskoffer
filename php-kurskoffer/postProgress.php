@@ -10,6 +10,8 @@
 		if($row) {
 			$uid = $row['uid'];
 			$sql = "select uid, chapter, pcount from progress where uid = " . $uid . " and chapter = " . $_POST['chapter'];
+			error_log($sql);
+			error_log(mysql_error());
 			$result = mysql_query($sql);
 			$row = mysql_fetch_assoc($result);
 			if($row) {
