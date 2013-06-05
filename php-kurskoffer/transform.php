@@ -5,11 +5,23 @@
 // 	header('Content-type: application/xml; charset=utf-8');
 // 	header('Content-type: text/html; charset=utf-8');
 	
-	if ( isset($_POST['token']) ) {	
+	if ( isset($_POST['token']) && isset($_POST['courseid']) ) {	
 		error_log('token ' . $_POST['token'] . ' was set .. accessing moodle');	
 		
 		$xml = new DOMDocument;
-		$xml->load("http://cloud.c3lab.tk.jku.at/moodle/webservice/rest/server.php?wstoken=".$_POST['token']."&wsfunction=core_course_get_contents&courseid=4");
+		$courseid = intval($_POST['courseid']);
+		switch ($courseid) {
+			case 1:
+				// Rettung
+				$courseid = 4;
+				break;
+			case 3:
+				// Armenian
+				$courseid = 3;
+				break;
+		}
+		
+		$xml->load("http://cloud.c3lab.tk.jku.at/moodle/webservice/rest/server.php?wstoken=".$_POST['token']."&wsfunction=core_course_get_contents&courseid=" . $courseid);
 		error_log('xml content loaded');
 		
 		$xsl = new DOMDocument;
