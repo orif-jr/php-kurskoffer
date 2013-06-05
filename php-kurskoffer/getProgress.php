@@ -3,7 +3,7 @@
 	/* Connect to the database */
 	include_once ("dbsettings.php");
 
-	if ( isset($_GET['username']) ){
+	if ( isset($_POST['username']) ){
 		$sql = "select uid from accounts where login like '" . $_POST['username'] . "'";
 		$result = mysql_query($sql);
 		$row = mysql_fetch_assoc($result);
