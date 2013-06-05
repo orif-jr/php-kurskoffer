@@ -34,7 +34,6 @@
 		
 // 		echo $proc->transformToXML($xml);
 		$new_xml = $proc->transformToXML($xml);
-		error_log('xml transformation successful ' . $new_xml);
 		
 		/* Push the new formed XML document into JSON format */
 		$xml2 = new SimpleXMLElement($new_xml);
