@@ -15,7 +15,26 @@
 			if($row) {
 				$scount = $row['scount'];
 				// TODO topic count hard coded!
-				$progress = array('readTopics' => $scount, 'topicCount' => 19);
+				
+				$sql = 'select uid, count(*) ocount from progress where uid != ' . $uid . ' group by uid';
+				$result = mysql_query($sql);
+				$row = mysql_fetch_assoc($result);
+				$countHigher = 0;
+				$countLower = 0;
+				$countSame = 0;
+				while($row) {
+					$ocount = intval($row['ocount']);
+					if($ocount < $scount) {
+						$countLower ++;
+					}else if($ocount > $scount) {
+						$countHigher ++;
+					}else{
+						$countSame ++;
+					}
+				}
+				
+				
+				$progress = array('readTopics' => $scount, 'topicCount' => 19, 'countLower' => $countLower, 'countHigher' => $countHigher, 'countSame' => $countSame);
 				$json = json_encode($progress);
 				error_log($json);
 				echo $json;
