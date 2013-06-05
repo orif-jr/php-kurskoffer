@@ -31,8 +31,8 @@
 					}else{
 						$countSame ++;
 					}
+					$row = mysql_fetch_assoc($result);
 				}
-				
 				
 				$progress = array('readTopics' => $scount, 'topicCount' => 19, 'countLower' => $countLower, 'countHigher' => $countHigher, 'countSame' => $countSame);
 				$json = json_encode($progress);
