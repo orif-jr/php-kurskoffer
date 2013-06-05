@@ -16,8 +16,9 @@
 				$scount = $row['scount'];
 				// TODO topic count hard coded!
 				$progress = array('readTopics' => $scount, 'topicCount' => 19);
-				error_log($progress);
-				echo json_encode($progress);
+				$json = json_encode($progress);
+				error_log($json);
+				echo $json;
 			}
 		}
 	}
