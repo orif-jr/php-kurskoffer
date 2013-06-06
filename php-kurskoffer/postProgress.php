@@ -3,7 +3,7 @@
 	/* Connect to the database */
 	include_once ("dbsettings.php");
 
-	if ( isset($_POST['username']) && isset($_POST['chapter']) ){
+	if ( isset($_POST['username']) && isset($_POST['chapter']) && isset($_POST['courseId']) ){
 		$sql = "select uid from accounts where login like '" . $_POST['username'] . "'";
 		$result = mysql_query($sql);
 		$row = mysql_fetch_assoc($result);
@@ -17,11 +17,11 @@
 			if($row) {
 				// update progress
 				$pcount = $row['pcount'] + 1;
-				$sql = "update progress set pcount = " . $pcount . " where uid = " . $uid . " and chapter like '" . $_POST['chapter'] . "'";
+				$sql = "update progress set pcount = " . $pcount . " where uid = " . $uid . " and chapter like '" . $_POST['chapter'] . "' and courseid = " . $_POST['courseId'];
 				mysql_query($sql);
 			}else{
 				// insert progress
-				$sql = "insert into progress (uid, chapter, pcount) values (" . $uid . ", '" . $_POST['chapter'] . "', 1)";
+				$sql = "insert into progress (uid, chapter, courseid, pcount) values (" . $uid . ", '" . $_POST['chapter'] . "', " . $_POST['courseId'] . ", 1)";
 				mysql_query($sql);
 			}
 		}
