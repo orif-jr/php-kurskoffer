@@ -14,7 +14,15 @@
 			$row = mysql_fetch_assoc($result);
 			if($row) {
 				$scount = $row['scount'];
-				// TODO topic count hard coded!
+				$sql = 'select tcount from topics where courseid = ' . $_POST['courseId'];
+				$result = mysql_query($sql);
+				$row = mysql_fetch_assoc($result);
+				if($row) {
+					$topicCount = $row['tcount'];
+				}else{
+					// actually a bad error if the script reaches this state
+					$topicCount = 100;
+				}
 				
 				$sql = 'select uid, count(*) ocount from progress where uid != ' . $uid . ' and courseid = ' . $_POST['courseId'] . ' group by uid';
 				$result = mysql_query($sql);
@@ -34,7 +42,7 @@
 					$row = mysql_fetch_assoc($result);
 				}
 				
-				$progress = array('readTopics' => $scount, 'topicCount' => 19, 'countLower' => $countLower, 'countHigher' => $countHigher, 'countSame' => $countSame);
+				$progress = array('readTopics' => $scount, 'topicCount' => $topicCount, 'countLower' => $countLower, 'countHigher' => $countHigher, 'countSame' => $countSame);
 				$json = json_encode($progress);
 				error_log($json);
 				echo $json;
