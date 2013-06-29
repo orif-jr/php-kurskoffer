@@ -63,9 +63,9 @@
 		error_log($sql);
 		$result = mysql_query($sql);
 		$row = mysql_fetch_assoc($result);
+		$tcount = $current;
 		if($row) {
 			// update progress
-			$tcount = $current;
 			$sql = "update topics set tcount = " . $tcount . " where courseid = " . $courseid;
 			mysql_query($sql);
 		}else{
