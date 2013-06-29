@@ -1,5 +1,7 @@
 ﻿<?php
 	error_reporting(E_ALL);
+	/* Connect to the database */
+	include_once ("dbsettings.php");
 	
 	header('Content-type: application/json; charset=utf-8');
 // 	header('Content-type: application/xml; charset=utf-8');
@@ -55,6 +57,22 @@
 		$json = json_encode($topics_list);
 		error_log($json);
 		echo $json;
+		
+		// now try to store the topic count to the database
+		$sql = "select tcount from topics where courseid = " . $courseid;
+		error_log($sql);
+		$result = mysql_query($sql);
+		$row = mysql_fetch_assoc($result);
+		if($row) {
+			// update progress
+			$tcount = $current;
+			$sql = "update topics set tcount = " . $tcount . " where courseid = " . $courseid;
+			mysql_query($sql);
+		}else{
+			// insert progress
+			$sql = "insert into topics (courseid, tcount) values (" . $courseid . ", " . $tcount . ")";
+			mysql_query($sql);
+		}
 	} else {
 		echo "Error: can not identify the user token.";
 	}
