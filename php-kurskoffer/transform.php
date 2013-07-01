@@ -73,6 +73,9 @@
 			mysql_query($sql);
 		}
 		
+		// write to tmp file for admin review
+		file_put_contents('/tmp/moodle_model_' . $courseid . '.json', $json);
+		
 		echo $json;
 	} else {
 		echo "Error: can not identify the user token.";
