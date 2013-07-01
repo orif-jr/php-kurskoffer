@@ -6,6 +6,9 @@
 	header('Content-type: application/json; charset=utf-8');
 // 	header('Content-type: application/xml; charset=utf-8');
 // 	header('Content-type: text/html; charset=utf-8');
+
+	error_log('token: ' . $_POST['token']);
+	error_log('course: ' . $_POST['courseid']);
 	
 	if ( isset($_POST['token']) && isset($_POST['courseid']) ) {	
 		error_log('token ' . $_POST['token'] . ' was set .. accessing moodle');	
