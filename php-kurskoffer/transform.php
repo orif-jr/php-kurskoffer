@@ -58,20 +58,20 @@
 		error_log($json);
 		
 		// now try to store the topic count to the database
-		$sql = "select tcount from topics where courseid = " . $courseid;
-		error_log($sql);
-		$result = mysql_query($sql);
-		$row = mysql_fetch_assoc($result);
-		$tcount = $current;
-		if($row) {
-			// update progress
-			$sql = "update topics set tcount = " . $tcount . " where courseid = " . $courseid;
-			mysql_query($sql);
-		}else{
-			// insert progress
-			$sql = "insert into topics (courseid, tcount) values (" . $courseid . ", " . $tcount . ")";
-			mysql_query($sql);
-		}
+// 		$sql = "select tcount from topics where courseid = " . $courseid;
+// 		error_log($sql);
+// 		$result = mysql_query($sql);
+// 		$row = mysql_fetch_assoc($result);
+// 		$tcount = $current;
+// 		if($row) {
+// 			// update progress
+// 			$sql = "update topics set tcount = " . $tcount . " where courseid = " . $courseid;
+// 			mysql_query($sql);
+// 		}else{
+// 			// insert progress
+// 			$sql = "insert into topics (courseid, tcount) values (" . $courseid . ", " . $tcount . ")";
+// 			mysql_query($sql);
+// 		}
 		
 		// write to tmp file for admin review
 		file_put_contents('/tmp/moodle_model_' . $courseid . '.json', $json);
