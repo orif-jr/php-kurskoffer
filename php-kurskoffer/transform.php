@@ -3,9 +3,10 @@
 	/* Connect to the database */
 	include_once ("dbsettings.php");
 	
-	header('Content-type: application/json; charset=utf-8');
+// 	header('Content-type: application/json; charset=utf-8');
 // 	header('Content-type: application/xml; charset=utf-8');
 // 	header('Content-type: text/html; charset=utf-8');
+ 	header('Content-type: text/plain; charset=utf-8');
 
 	error_log('token: ' . $_POST['token']);
 	error_log('token get: ' . $_GET['token']);
