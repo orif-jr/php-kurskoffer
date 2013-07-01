@@ -56,7 +56,6 @@
 		// convert to the JSON format
 		$json = json_encode($topics_list);
 		error_log($json);
-		echo $json;
 		
 		// now try to store the topic count to the database
 		$sql = "select tcount from topics where courseid = " . $courseid;
@@ -73,6 +72,8 @@
 			$sql = "insert into topics (courseid, tcount) values (" . $courseid . ", " . $tcount . ")";
 			mysql_query($sql);
 		}
+		
+		echo $json;
 	} else {
 		echo "Error: can not identify the user token.";
 	}
