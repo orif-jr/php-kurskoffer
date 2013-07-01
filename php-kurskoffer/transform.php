@@ -8,7 +8,9 @@
 // 	header('Content-type: text/html; charset=utf-8');
 
 	error_log('token: ' . $_POST['token']);
+	error_log('token get: ' . $_GET['token']);
 	error_log('course: ' . $_POST['courseid']);
+	error_log('course get: ' . $_GET['courseid']);
 	
 	if ( isset($_POST['token']) && isset($_POST['courseid']) ) {	
 		error_log('token ' . $_POST['token'] . ' was set .. accessing moodle');	
