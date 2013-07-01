@@ -11,7 +11,7 @@
 			$uid = $row['uid'];
 			
 			// TODO rethink uid != uid.
-			$sql = 'select firstname, badge_blue, badge_bronze, badge_silver, badge_gold, badge_green from accounts, badges where accounts.uid = badges.uid and where badges.uid != ' . $uid;
+			$sql = 'select firstname, badge_blue, badge_bronze, badge_silver, badge_gold, badge_green from accounts, badges where accounts.uid = badges.uid and badges.uid != ' . $uid;
 			$result = mysql_query($sql);
 			$row = mysql_fetch_assoc($result);
 			$data = array();
