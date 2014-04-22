@@ -1,5 +1,7 @@
 ﻿<?php
 	error_reporting(E_ALL);
+
+	// http://cloud.c3lab.tk.jku.at/moodle/webservice/rest/server.php?wstoken=63e83b00a4b040c5442f349bea981244&wsfunction=core_calendar_get_calendar_events&events[courseids][0]=5
 	
 	/* Connect to the database */
 	include_once ("dbsettings.php");
